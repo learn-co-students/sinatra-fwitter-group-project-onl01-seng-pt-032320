@@ -1,12 +1,20 @@
+<h1>Welcome, <a href="/users/<%= current_user.username %>"><%= current_user.username %></a></h1>
+
+  <form action='/tweets' method="get">
+    <input type="submit" id="submit" value="All Tweets">
+  </form>
+  &ensp;
+  <form action='/logout' method="get">
+      <input type="submit" id="submit" value="Log Out">
+  </form>
+  &ensp;
+<h2>Write your new tweet.</h2>
 <% if is_logged_in? %>
 <%= @error %>
   <form action='/tweets' method="post">
     Content:
-    <input type="text" name="content"><br>
-    Create Your Tweet:
-
+    <input type="text" name="content">&ensp;
     <input type="submit" id="submit" value="submit">
-
   </form>
 
   <% else %>

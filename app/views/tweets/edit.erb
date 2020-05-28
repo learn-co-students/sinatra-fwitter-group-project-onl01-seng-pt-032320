@@ -1,3 +1,5 @@
+<h1>Welcome, <a href="/users/<%= current_user.username %>"><%= current_user.username %></a></h1>
+<h3>Edit your tweet.</h3>
 <form method="post" action="/tweets/<%= @tweet.id %>/edit">
 <input id="hidden" type="hidden" name="_method" value="patch">
 <input type="text" name="tweet[content]" id="content" value="<%= @tweet.content %>">

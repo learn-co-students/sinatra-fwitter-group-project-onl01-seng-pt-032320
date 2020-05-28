@@ -23,6 +23,8 @@ class TweetsController < ApplicationController
             tweet=Tweet.new(params)
             tweet.user_id = session[:id]
             tweet.save
+            @tweets = Tweet.all
+            erb :'tweets/tweets'
         else
             redirect '/tweets/new'
         end
