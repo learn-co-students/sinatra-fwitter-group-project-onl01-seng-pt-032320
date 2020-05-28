@@ -1,0 +1,31 @@
+<h1>Welcome, <a href="/users/<%= current_user.username %>"><%= current_user.username %></a></h1>
+<form action='/tweets/new' method="post">
+        <input type="submit" id="submit" value="New Tweet">
+        </form>
+        &ensp;
+        <form action='/logout' method="get">
+        <input type="submit" id="submit" value="Log Out">
+        </form>
+
+
+    <%if @tweets%>
+        
+        <% @tweets.each do |tweet|%>
+                <p><h4><a href="/tweets/<%=tweet.id%>"><%=tweet.id%>.</a> &ensp;
+                       <a href="/users/<%= tweet.user.slug %>"><%= tweet.user.slug %></a> : <%= tweet.content %> <h4></p>
+            
+        <%end%>
+    <%else%>
+        <ul>
+            <li><p><%=@tweet.content%></p></li>
+        </ul>
+        <form action='/tweets/<%= @tweet.id %>' method="post">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" id="submit" value="Delete Tweet">
+        </form>
+        <br>
+        <form action='/tweets/<%= @tweet.id %>/edit' method="get">
+        <input type="submit" id="submit" value="Edit Tweet">
+        </form>
+    <%end%>
+
