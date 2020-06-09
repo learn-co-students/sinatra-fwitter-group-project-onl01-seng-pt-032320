@@ -1,0 +1,18 @@
+<h1>Welcome, <a href="/users/<%= current_user.username %>"><%= current_user.username %></a></h1>
+<form action='/tweets/new' method="get">
+    <input type="submit" value="Create a New Tweet">
+    </form><br>
+
+    <form action='/logout' method="get">
+    <input type="submit" value="Log Out">
+    </form><br><br>
+
+<h3><%=@tweet.content %></h3>
+<h4><%=@tweet.user.username %></h4>
+<a href="/tweets/<%=@tweet.id%>/edit"> Edit Tweet<a/>
+
+<form action="/tweets/<%=@tweet.id %>" method="post">
+<input id="hidden" type="hidden" name="_method" value="delete">
+<input type="submit" id="submit" value="Delete Tweet">
+</form>
+
