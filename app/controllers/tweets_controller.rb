@@ -18,8 +18,7 @@ class TweetsController < ApplicationController
 
     post '/tweets' do
         if params[:content] != ""
-            @tweet = Tweet.new(params)
-            @tweet.user_id = current_user.id
+            @tweet = current_user.tweets.build(params)
             @tweet.save
             @tweets = Tweet.all 
             erb :'tweets/tweets'
