@@ -1,0 +1,6 @@
+<h3>Hi <%= current_user.username%></h3>
+<ul>
+<% Tweet.all.each go |tweet|%>
+<li><%= tweet.content%></li><br>
+<% end %>
+</ul>
