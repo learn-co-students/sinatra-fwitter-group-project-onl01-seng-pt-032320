@@ -18,7 +18,6 @@ class UsersController < ApplicationController
    end
   end
 
-
   get '/login' do
     if session[:User_id] == nil
       erb 'users/login'

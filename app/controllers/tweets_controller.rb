@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
   get '/tweets' do
     binding.pry
     if session[:User_id] != nil
-      @user = User.find_by_id(session[:User_id])
+      @user = User.find(session[:User_id])
       @tweets = Tweet.all
       binding.pry
       erb :'/tweets/tweets'
