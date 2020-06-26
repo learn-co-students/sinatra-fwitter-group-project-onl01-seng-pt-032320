@@ -38,10 +38,14 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/logout' do 
-        session.clear
-        redirect "/"
-    end 
+    get '/logout' do
+        if Helpers.is_logged_in?(session) != nil 
+          session.clear
+          redirect to 'users/login'
+        else
+          redirect to 'index'
+        end
+    end
 
 
 end
