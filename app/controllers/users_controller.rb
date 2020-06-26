@@ -22,10 +22,10 @@ class UsersController < ApplicationController
    
     get '/login' do
         if Helpers.is_logged_in?(session)
-          redirect to "/tweets"
-        end
-    
-        erb :"/users/login"
+          redirect "/tweets"
+        else
+          erb :"users/login"
+        end 
     end
 
     post '/login' do
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
           session[:user_id] = user.id
           redirect "/tweets"
         else
-          redirect '/signup'
+          redirect '/login'
         end
     end
 
