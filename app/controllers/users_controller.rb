@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if session[:User_id] == nil
-      erb 'users/login'
+      erb :'users/login'
     else
       redirect "/tweets"
     end
@@ -44,6 +44,13 @@ class UsersController < ApplicationController
       redirect 'index'
     end
   end
+
+  get '/users/:slug' do
+    slug = params[:slug]
+    @user = User.find_by_slug(slug)
+    erb :"users/show"
+  end
+
 
 
 end
