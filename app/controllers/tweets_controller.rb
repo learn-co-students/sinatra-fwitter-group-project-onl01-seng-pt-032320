@@ -17,7 +17,9 @@ class TweetsController < ApplicationController
     end
 
     post '/tweets' do
-        
+        if !Helpers.is_logged_in?(session)
+            redirect '/tweets/new'
+        end 
     end
 
 end
