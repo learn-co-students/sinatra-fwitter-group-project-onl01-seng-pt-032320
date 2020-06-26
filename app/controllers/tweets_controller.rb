@@ -22,4 +22,14 @@ class TweetsController < ApplicationController
         end 
     end
 
+    get '/tweets/new' do 
+        if Helpers.is_logged_in?(session)
+            erb :new
+        end 
+    end 
+
+    get '/tweets/:id' do 
+
+    end 
+
 end
