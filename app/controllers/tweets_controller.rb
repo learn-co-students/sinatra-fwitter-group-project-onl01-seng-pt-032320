@@ -10,26 +10,32 @@ class TweetsController < ApplicationController
     end
 
     get '/tweets/new' do
-        if !Helpers.is_logged_in?(session)
-          redirect to '/login'
+        if Helpers.is_logged_in?(session)
+            current_user
+            erb :"tweets/new"
+        else
+            redirect '/login'
         end
-        erb :"/tweets/create_tweet"
     end
+
 
     post '/tweets' do
-        if !Helpers.is_logged_in?(session)
+        if params[:content] != ""
+            tweet=Tweet.new(params)
+            tweet.user_id = session[:id]
+            tweet.save
+            @tweets = Tweet.all
+            erb :'tweets/tweets'
+        else
             redirect '/tweets/new'
-        end 
+        end
     end
 
-    get '/tweets/new' do 
-        if Helpers.is_logged_in?(session)
-            erb :new
-        end 
-    end 
+    
 
     get '/tweets/:id' do 
 
     end 
 
+    
 end
