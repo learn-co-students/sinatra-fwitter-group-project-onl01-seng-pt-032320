@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     get '/logout' do
         if Helpers.is_logged_in?(session) != nil 
           session.clear
-          redirect to 'users/login'
+          redirect to '/login'
         else
           redirect to 'index'
         end
