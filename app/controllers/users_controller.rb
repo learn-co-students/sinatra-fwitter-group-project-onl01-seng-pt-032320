@@ -1,14 +1,13 @@
+require 'pry'
+
 class UsersController < ApplicationController
-  configure do
-    enable :sessions
-    set :session_secret, "secret"
-  end
 
   get '/signup' do
     if !Helpers.logged_in?(session)
-      erb :'users/create_user'
+      erb :"users/create_user"
     else
       redirect to '/tweets'
+
     end
   end
 
@@ -28,12 +27,11 @@ class UsersController < ApplicationController
     if Helpers.logged_in?(session)
       redirect to '/tweets'
     end
-    erb :'users/login'
+    erb :"users/login"
   end
 
   post '/login' do
     user = User.find_by(username: params[:username])
-
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect to '/tweets'
@@ -49,6 +47,12 @@ class UsersController < ApplicationController
     else
       redirect to '/'
     end
+  end
+
+  get '/users/:slug' do
+    slug = params[:slug]
+    @user = User.find_by_slug(slug)
+    erb :"users/show"
   end
 
 end
