@@ -21,25 +21,21 @@ class TweetsController < ApplicationController
 
 
     post '/tweets' do
-        #tweets = Tweet.create(content: params[:content])
-           #redirect to "tweets/tweets/#{@tweet.id}"
-        if params[:content] != ""
-            tweet=Tweet.new(id: params[:id])
-            tweet.user_id = session[:id]
-            tweet.save
-            @tweets = Tweet.all
-            erb :'tweets/tweets'
-        else
-            redirect '/tweets/new'
+        user = Helpers.current_user(session)
+        if params[:content].empty?
+          redirect to '/tweets/new'
         end
-    end
+        tweet = Tweet.create(:content => params["content"], :user_id => user.id)
+    
+        redirect to '/tweets'
+      end
 
 
     get '/tweets/:id' do #show action 
         if !Helpers.is_logged_in?(session)
           redirect to '/login'
         else 
-        @tweet = Tweet.find(id: params[:id])
+        @tweet = Tweet.find(params[:id])
         erb :"tweets/show"
         end 
     end
@@ -68,7 +64,7 @@ class TweetsController < ApplicationController
     end
 
 
-    delete '/tweets/:id/delete' do
+    post '/tweets/:id/delete' do
         if logged_in?
           @tweet = Tweet.find_by_id(params[:id])
         if @tweet && @tweet.user == current_user
