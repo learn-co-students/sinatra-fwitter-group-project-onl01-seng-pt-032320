@@ -61,8 +61,8 @@ class TweetsController < ApplicationController
         if params[:content].empty?
             redirect to "/tweets/#{params[:id]}/edit"
         end
-        tweet.update(content: params[:content])
-        tweet.save
+        @tweet.update(content: params[:content])
+        @tweet.save
         redirect to "/tweets/#{tweet.id}"
     end
 
