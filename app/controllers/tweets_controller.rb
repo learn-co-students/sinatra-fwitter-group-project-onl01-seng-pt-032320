@@ -35,7 +35,7 @@ class TweetsController < ApplicationController
         if !Helpers.is_logged_in?(session)
           redirect to '/login'
         else 
-        @tweet = Tweet.find(params[:id])
+        @tweet = Tweet.find_by_id(params[:id])
         erb :"tweets/show"
         end 
     end
@@ -55,7 +55,7 @@ class TweetsController < ApplicationController
 
     patch '/tweets/:id' do 
         if Helpers.is_logged_in?
-         @tweet = Tweet.find(params[:id])
+         @tweet = Tweet.find_by_id(params[:id])
          #@tweet = Tweet.find(params[:content])
         end 
         if params[:content].empty?
