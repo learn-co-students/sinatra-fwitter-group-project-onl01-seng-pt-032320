@@ -34,11 +34,24 @@ class TweetsController < ApplicationController
         end
     end
 
-    
 
-    get '/tweets/:id' do 
+    get '/tweets/:id' do
+        if !Helpers.is_logged_in?(session)
+          redirect to '/login'
+        end
+        @tweet = Tweet.find(params[:id])
+        erb :"tweets/show_tweet"
+      end
 
-    end 
-
-    
+      post '/tweets/:id/delete' do
+        if !Helpers.is_logged_in?(session)
+          redirect to '/login'
+        end
+        @tweet = Tweet.find(params[:id])
+        if Helpers.current_user(session).id != @tweet.user_id
+          redirect to '/tweets'
+        end
+        @tweet.delete
+        redirect to '/tweets'
+      end
 end
