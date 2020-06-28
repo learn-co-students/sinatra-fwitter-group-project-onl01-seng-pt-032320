@@ -55,6 +55,12 @@ class TweetsController < ApplicationController
         erb :"tweets/edit"
     end
 
+    patch '/tweets/:id' do 
+
+    end 
+
+
+
     delete '/tweets/:id/delete' do
         if logged_in?
           @tweet = Tweet.find_by_id(params[:id])
