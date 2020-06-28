@@ -24,7 +24,7 @@ class TweetsController < ApplicationController
         #tweets = Tweet.create(content: params[:content])
            #redirect to "tweets/tweets/#{@tweet.id}"
         if params[:content] != ""
-            tweet=Tweet.new(params)
+            tweet=Tweet.new(id: params[:id])
             tweet.user_id = session[:id]
             tweet.save
             @tweets = Tweet.all
