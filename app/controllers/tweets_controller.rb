@@ -13,7 +13,7 @@ class TweetsController < ApplicationController
 
     get '/tweets/new' do #new action 
         if Helpers.is_logged_in?(session)
-            erb :"tweets/new"
+            erb :"tweets/create_tweet"
         else
             redirect '/login'
         end
@@ -56,9 +56,16 @@ class TweetsController < ApplicationController
     end
 
     patch '/tweets/:id' do 
-
-    end 
-
+        if Helpers.is_logged_in?
+         @tweet = Tweet.find(params[:id])
+        end 
+        if params[:content].empty?
+            redirect to "/tweets/#{params[:id]}/edit"
+        end
+        tweet.update(content: params[:content])
+        tweet.save
+        redirect to "/tweets/#{tweet.id}"
+    end
 
 
     delete '/tweets/:id/delete' do
