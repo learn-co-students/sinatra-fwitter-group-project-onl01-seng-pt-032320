@@ -53,6 +53,14 @@ class TweetsController < ApplicationController
         #redirect to '/tweets'
     end
 
+    #post '/tweets/:id/edit' do 
+        #@tweet.id = params[:id]
+        #@tweet.content = params[:content]
+       # @tweet.save
+        #redirect "/tweets/#{@tweet.id}/edit"
+   # end 
+
+
     patch '/tweets/:id' do 
         if Helpers.is_logged_in?
          tweet = Tweet.find_by_id(params[:id])
