@@ -1,0 +1,13 @@
+
+
+<h1>Welcome, <%= @user.username %></h1><br>
+
+<% @tweets.each do |tweet| %><br>
+<a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a>
+<% end %><br><br>
+
+<a href="/tweets/new"><button type="button">New Tweet</button></a>
+<a href="/tweets/:id/edit"><button type="button">Edit Tweet</button></a>
+<a href="/logout"><button type="button">Log Out</button></a>
+
+
