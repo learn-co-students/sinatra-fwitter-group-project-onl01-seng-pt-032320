@@ -4,7 +4,7 @@
 <br><br>
 <form method="POST" action="/tweets/<%= @tweet.id %>">
     <input type="hidden" id="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete">
+    <input type="submit" value="Delete Tweet">
 </form>
-<a href="/tweets/<%= @tweet.id %>/edit"><button>Edit this tweet</button></a>
+<a class="btn btn-primary" value="Edit Tweet" href="/tweets/<%=@tweet.id%>/edit">Edit Tweet</a>
 <a href="/tweets"><button>View all my tweets</button></a>

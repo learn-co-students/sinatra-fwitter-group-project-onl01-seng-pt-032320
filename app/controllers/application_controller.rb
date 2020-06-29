@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    @user = current_user if is_logged_in?
+    @user = current_user if logged_in?
     erb :index
   end
 
@@ -26,6 +26,7 @@ end
       user = User.find_by(username: params[:username])
       if user && user.authenticate(params[:password])
           session[:user_id] = user.id
+          
       else
           redirect '/login'
       end

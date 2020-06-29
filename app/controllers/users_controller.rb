@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-get '/profile' do
-    @user = current_user
+get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
 end
 
