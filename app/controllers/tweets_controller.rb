@@ -17,7 +17,7 @@ class TweetsController < ApplicationController
       end
     end
   
-    post '/tweets/new' do
+    post '/tweets' do
       if params[:content].empty?
         redirect '/tweets/new'
       else
@@ -25,13 +25,14 @@ class TweetsController < ApplicationController
         @user = User.find(session[:user_id])
         @tweet.user_id = @user.id
         @tweet.save
+        redirect "/tweets/#{@tweet.id}"
       end
     end
   
     get '/tweets/:id' do
       if logged_in?
         @tweet = Tweet.find_by_id(params[:id])
-        erb :'/tweets/show'
+        erb :'/tweets/show_tweet'
       else
         redirect '/login'
       end
