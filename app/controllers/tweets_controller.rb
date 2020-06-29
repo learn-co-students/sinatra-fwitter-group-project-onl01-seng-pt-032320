@@ -34,9 +34,10 @@ class TweetsController < ApplicationController
     get '/tweets/:id' do #show action 
         if !Helpers.is_logged_in?(session)
           redirect to '/login'
-        else 
+        end
         @tweet = Tweet.find_by_id(params[:id])
-        erb :"tweets/show"
+        if @tweet.content != nil 
+            erb :"tweets/show"
         end 
     end
 
@@ -45,8 +46,10 @@ class TweetsController < ApplicationController
           redirect to '/login'
         end
         @tweet = Tweet.find_by_id(params[:id])
+        if @tweet.content != nil 
         if Helpers.current_user(session).id == @tweet.user_id
-            erb :"tweets/edit"  #erb :"tweets/show"
+                erb :"tweets/edit" 
+            end  #erb :"tweets/show"
         end 
 
         #erb :"tweets/edit"
@@ -61,18 +64,17 @@ class TweetsController < ApplicationController
    # end 
 
 
-    patch '/tweets/:id' do 
-        if Helpers.is_logged_in?
-         tweet = Tweet.find_by_id(params[:id])
-         #@tweet = Tweet.find(params[:content])
-        end 
+    patch '/tweets/:id' do
+        tweet = Tweet.find(params[:id])
         if params[:content].empty?
-            redirect to "/tweets/#{params[:id]}/edit"
+          redirect to "/tweets/#{params[:id]}/edit"
         end
         tweet.update(content: params[:content])
         tweet.save
+      
         redirect to "/tweets/#{tweet.id}"
-    end
+      end
+
 
 
     post '/tweets/:id/delete' do
