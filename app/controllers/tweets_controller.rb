@@ -72,7 +72,7 @@ class TweetsController < ApplicationController
             redirect to '/login'
         end
         @tweet = Tweet.find_by_id(params[:id])
-        if Helpers.current_user(session).id != @tweet.user_id
+        if @tweet.user_id != Helpers.current_user(session).id
         redirect to '/tweets'
         end
         @tweet.delete
