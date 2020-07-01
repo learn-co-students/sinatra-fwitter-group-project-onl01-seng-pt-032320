@@ -18,11 +18,7 @@ class UsersController < ApplicationController
     end
 
     get '/logout' do
-        ##clears sessions hash
-        if user.logged_in?
-            redirect to "/tweets"
-        else
-            redirect to "/login"
-        end
+        session.clear
+        redirect to "/login"
     end
 end
