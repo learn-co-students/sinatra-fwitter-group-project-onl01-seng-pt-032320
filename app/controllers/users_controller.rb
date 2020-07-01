@@ -1,12 +1,18 @@
 class UsersController < ApplicationController
 
     get '/signup' do 
-        ##log the user in and add user_id to sessions hash
         
+        erb :signup
     end
     
     post '/signup' do 
-        user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
+        user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+        session[:user_id] = user.id
+        if user.save
+            redirect "/tweets"
+        else
+            redirect "/signup"
+        end
     end
 
     get '/login' do 
