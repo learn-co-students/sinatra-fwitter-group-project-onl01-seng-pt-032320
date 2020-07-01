@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
 
     get '/signup' do 
-        
+
         erb :signup
     end
     
     post '/signup' do 
         user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
-        session[:user_id] = user.id
+        
         if user.save
+            session[:user_id] = user.id
             redirect "/tweets"
         else
             redirect "/signup"
