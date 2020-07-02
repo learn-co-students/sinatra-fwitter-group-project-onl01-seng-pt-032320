@@ -1,0 +1,7 @@
+<body>
+<% if Helpers.is_logged_in?(session) == true %>
+    <% user = Helpers.current_user(session) %>
+      <h1>Welcome, <%=user.username%></h1>
+  <% end %>
+
+</body>
