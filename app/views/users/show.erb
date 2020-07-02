@@ -1,0 +1,8 @@
+<h1>Hello<%= @user.username%></h1>
+<h3>Here is your tweet history:</h3>
+<% @user.tweets.each do |tweet|%>
+<div>
+    <%= tweet.content%>
+</div>
+
+<% end %>
