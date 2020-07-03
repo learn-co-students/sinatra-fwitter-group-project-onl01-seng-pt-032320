@@ -4,10 +4,12 @@ class User < ActiveRecord::Base
   validates_presence_of  :username, :email, :password_digest
 
   def slug
-    
+    self.username.parameterize
   end
 
-  def find_by_slug
-
+  def self.find_by_slug(slug)
+    self.find do |user| 
+      user.slug == slug
+    end
   end
 end

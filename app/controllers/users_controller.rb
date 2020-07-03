@@ -4,7 +4,7 @@ class UsersController < ApplicationController
         if session[:user_id] == nil
             erb :'users/signup'
         else
-            redirect to '/tweets'
+            redirect '/tweets'
         end
     end
     
@@ -28,18 +28,29 @@ class UsersController < ApplicationController
     end
 
     post '/login' do 
-            user = User.find_by(username: params[:username])
+        ###find the user in the db, authenticate user, send them to tweets
+        ###if user doesn't exist, send them to "/login"
+        user = User.find_by(:username => params[:username])
+
             if user && user.authenticate(params[:password])
                 session[:user_id] = user.id
+            elsif !(user && user.authenticate(params[:password]))
+                redirect "/signup"
             else
-                redirect '/login'
+                redirect "/login"
             end
-        redirect '/tweets'
+            
+        redirect "/tweets"
             
     end
 
     
-
+    get '/users/:slug' do
+        slug = params[:slug]
+        @user = User.find_by_slug(slug)
+        erb :'users/show'
+      end
+      
 
 
     get '/logout' do
