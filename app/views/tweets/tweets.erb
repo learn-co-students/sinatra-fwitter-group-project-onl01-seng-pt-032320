@@ -1,0 +1,28 @@
+Welcome, <%= current_user.username %>
+<h2> Tweets </h2>
+
+
+<%if @tweets.empty?%>
+    <h3> You don't have Tweets.</h3>
+<%else %>
+    <% @tweets.each do |tweet| %>
+    <div> <%= tweet.content %> </div>
+    <% end %> 
+<% end %> 
+
+<form method="post" action='/tweets/new' >
+    <input type="submit" id="submit" value="New Tweet">
+</form>
+
+<br>
+
+<form method="get" action='/logout' >
+    <input type="submit" id="submit" value="Log Out">
+</form>
+
+<br>
+
+
+
+
+
