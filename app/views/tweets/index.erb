@@ -1,0 +1,13 @@
+<p>Welcome, <%= current_user.username %></p>
+
+<% @users.each do |user| %>
+  <h4><%= user.username %></h4>
+  <% tweets = Tweet.all.select {|tweet| tweet.user == user} %>
+  <ul>
+  <% tweets.each do |tweet| %>
+    <li><%= tweet.content %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p><a href="/logout">Log Out</a></p>
