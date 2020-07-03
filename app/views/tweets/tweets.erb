@@ -3,7 +3,7 @@ Welcome, <%= current_user.username %>
 
 
 <%if @tweets.empty?%>
-    <h3> You don't appear to have Tweets.</h3>
+    <h3> You don't have Tweets.</h3>
 <%else %>
     <% @tweets.each do |tweet| %>
     <div> <%= tweet.content %> </div>
