@@ -9,9 +9,13 @@ class UsersController < ApplicationController
     end
     
     post '/signup' do
-        user = User.create(params)
-        session[:id] = user.id
-        redirect '/tweets'
+        if params.values.include?("") 
+            redirect '/signup'
+        else 
+            user = User.create(params)
+            session[:id] = user.id
+            redirect '/tweets'
+        end
     end
     
     get '/login' do
@@ -23,18 +27,26 @@ class UsersController < ApplicationController
     end
     
     post '/login' do
-        user = User.find_by(username: [:username])
-        if user && user.authenticate(params[:password])
-            session[:id] = user.id
-            redirect '/tweets'
-        else
-            redirect '/users/login'
+        if params.values.include?("") 
+            redirect '/login'
+        else 
+            user = User.find_by(username: params[:username])
+            if user && user.authenticate(params[:password])
+                session[:id] = user.id
+                redirect '/tweets'
+            else
+                redirect '/login'
+            end
         end
     end
     
     get '/logout' do
-        session.clear
-        redirect '/'
+        if logged_in?
+            session.clear
+            redirect '/login'
+        else
+            redirect '/'
+        end
     end
 
 end
