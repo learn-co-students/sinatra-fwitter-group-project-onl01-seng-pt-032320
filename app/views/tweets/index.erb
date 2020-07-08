@@ -1,0 +1,16 @@
+<div class="card-header">
+	<h1>Welcome, <%= @user&.username %></h1>
+</div>
+<div class="card-body">
+	<% if !@tweets.blank? %>
+	<div class="card">
+		<ul class="list-group list-group-flush">
+			<% for tweet in @tweets %>
+			<li class="list-group-item">
+				<a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+</div>

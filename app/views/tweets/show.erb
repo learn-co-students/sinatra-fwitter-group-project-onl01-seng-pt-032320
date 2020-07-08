@@ -1,0 +1,10 @@
+<div class="card-body">
+	<%= @tweet.content %>
+	<form action="/tweets/<%= @tweet.id %>/edit" method="GET">
+		<button type="submit" class="btn btn-danger">Edit Tweet</button>
+	</form>
+	<form action="/tweets/<%= @tweet.id %>" method="POST">
+		<input id="hidden" type="hidden" name="_method" value="DELETE">
+		<button type="submit" class="btn btn-danger">Delete Tweet</button>
+	</form>
+</div>
