@@ -1,0 +1,10 @@
+<div class="card-body">
+  <form action='/tweets/<%= @tweet.id %>' method="POST">
+  	<input id="hidden" type="hidden" name="_method" value="PATCH">
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <input value="<%= @tweet.content %>" class="form-control" type="text" id="content" name="content" placeholder="Content">
+    </div>
+    <input class="btn btn-primary" type="submit" name="submit" id="submit">
+  </form>
+</div>
