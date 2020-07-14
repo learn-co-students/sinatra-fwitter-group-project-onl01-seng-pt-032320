@@ -5,3 +5,5 @@ class CreateTweets < ActiveRecord::Migration[6.0]
       t.string   :user_id
   end
 end
+
+end
