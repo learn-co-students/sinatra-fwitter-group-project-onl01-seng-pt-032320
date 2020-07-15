@@ -1,0 +1,13 @@
+     <h2>Welcome, User: <%=@user.username%></h2>
+
+     <h3>Tweets:</h3>
+      <%@tweets.each_with_index do |tweet, index| %>
+        <h4> Tweet #<%= index + 1 %></h4>
+        <h5><%=tweet.content%></h5>
+      <%end%>
+
+    <h4>Create a New Tweet</h4>
+        <a href="/tweets/new">Create New Tweet</a>
+    <br>
+    <br>
+    <a href="/logout">Log Out</a>
