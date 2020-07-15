@@ -8,9 +8,8 @@ class User < ActiveRecord::Base
 
   def self.find_by_slug(slug)
     self.all.find do |instance|
-      if instance.slug == slug
+      instance.slug == slug
       end
-  end
-end                                                                                                   
+    end                                                                                                 
 
 end
