@@ -1,5 +1,3 @@
-
-
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
@@ -11,27 +9,18 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "fwitter_secret"
   end
 
-  get '/' do 
+  get '/' do
     erb :index
   end
 
-  get'/login' do
-      if logged_in?
-          @tweets = Tweet.all
-          erb:'tweets/tweets'
-      else
-          redirect to '/login'
-          
-      end    
-  end
+  helpers do
 
- helpers do
     def logged_in?
-      !!session[:user_id]
+      !!current_user
     end
 
     def current_user
-      User.find(session[:user_id])
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
 
   end
