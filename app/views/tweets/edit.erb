@@ -1,0 +1,7 @@
+<h1>Welcome, <%= current_user.username %></h1>
+<form action="/tweets/<%= @tweet.id %>/edit" method="POST">
+    <label for="content">Content: </label>
+    <input type="text" id="content" name="content" value="<%= @tweet.content %>%"/>
+    <br/>
+    <input type="submit" id="submit" value="Save Tweet"/>
+</form>
