@@ -13,12 +13,6 @@ class ApplicationController < Sinatra::Base
     erb :homepage
   end
 
-  class Helpers
-    def self.is_logged_in?(session)
-      !!session[:user_id]
-    end
-  end
-
   helpers do
     def logged_in?
       !!session[:user_id]
