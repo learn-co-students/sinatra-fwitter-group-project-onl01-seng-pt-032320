@@ -1,7 +1,7 @@
 <% if Helper.is_logged_in?(session) %>
   <form action='/tweets' method="post">
     <h1>Create Tweet:</h1>
-    <input type="text" name="tweet[content]"><br>
+    <input type="text" name="content"><br>
     
     <input type="submit" name="submit" id="submit">
   </form>

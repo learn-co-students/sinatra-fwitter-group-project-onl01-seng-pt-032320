@@ -1,4 +1,12 @@
-<% @tweets.each do |tweet| %>
-  <h2>@<%= tweet.user.username %></h2>
-  <p><%= tweet.content %></p>
-<% end %>
+<h1><%= current_user.username %></h1>
+
+<h2>Your Tweets below:</h2>
+
+<p>
+  <% @tweets.each do |tweet| %>
+    <div>
+      <%= tweet.content %>
+    </div>
+
+  <% end %>
+</p>
